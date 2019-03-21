@@ -9,21 +9,21 @@
 import sdl2
 import time
 
-def prettyPrintPS4(ps4):
+def prettyPrintPRO(pro):
     print '------------------------------------'
     print '    press [-] button to quit     '
-    print '   left axis (x,y):',ps4['la']['x'],ps4['la']['y']
-    print '  right axis (x,y):',ps4['ra']['x'],ps4['ra']['y']
+    print '   left axis (x,y):',pro['la']['x'],pro['la']['y']
+    print '  right axis (x,y):',pro['ra']['x'],pro['ra']['y']
     print '---'
-    print '  left trigger1:',ps4['lt1'],'\t\t','right trigger1:',ps4['rt1']
-    print '  left trigger2:',ps4['lt2'],'\t\t','right trigger2:',ps4['rt2']
+    print '  left trigger1:',pro['lt1'],'\t\t','right trigger1:',pro['rt1']
+    print '  left trigger2:',pro['lt2'],'\t\t','right trigger2:',pro['rt2']
     print '---'
-    print '    Y:',ps4['Y']
-    print '    X:',ps4['X']
-    print '    A:',ps4['A']
-    print '    B:',ps4['B']
+    print '    Y:',pro['Y']
+    print '    X:',pro['X']
+    print '    A:',pro['A']
+    print '    B:',pro['B']
     print '---'
-    print '  hat:',ps4['hat']
+    print '  hat:',pro['hat']
 
 # init stuff
 sdl2.SDL_Init(sdl2.SDL_INIT_JOYSTICK)
@@ -36,8 +36,8 @@ b = sdl2.SDL_JoystickNumButtons(js)
 h = sdl2.SDL_JoystickNumHats(js)
 print 'axes:',a,'buttons:',b,'hats:',h
 # exit()
-# Data structure holding the PS4 info
-ps4 = {
+# Data structure holding the PRO info
+pro = {
     'la': {'x': 0, 'y': 0},  # left axis
     'ra': {'x': 0, 'y': 0},
     'lt1': 0, # left trigger 1
@@ -55,36 +55,36 @@ while True:
     sdl2.SDL_JoystickUpdate()
     
     # left axis
-    ps4['la']['x'] = sdl2.SDL_JoystickGetAxis(js,0)
-    ps4['la']['y'] = sdl2.SDL_JoystickGetAxis(js,1)
+    pro['la']['x'] = sdl2.SDL_JoystickGetAxis(js,0)
+    pro['la']['y'] = sdl2.SDL_JoystickGetAxis(js,1)
     
     # right axis
-    ps4['ra']['x'] = sdl2.SDL_JoystickGetAxis(js,2)
-    ps4['ra']['y'] = sdl2.SDL_JoystickGetAxis(js,3)
+    pro['ra']['x'] = sdl2.SDL_JoystickGetAxis(js,2)
+    pro['ra']['y'] = sdl2.SDL_JoystickGetAxis(js,3)
     
     # left trigger axis
-    # ps4['lt2'] = sdl2.SDL_JoystickGetAxis(js,6)
-    ps4['lt2'] = sdl2.SDL_JoystickGetButton(js,6)
+    # pro['lt2'] = sdl2.SDL_JoystickGetAxis(js,6)
+    pro['lt2'] = sdl2.SDL_JoystickGetButton(js,6)
     
     # right trigger axis
-    # ps4['rt2'] = sdl2.SDL_JoystickGetAxis(js,7)
-    ps4['rt2'] = sdl2.SDL_JoystickGetButton(js,7)
+    # pro['rt2'] = sdl2.SDL_JoystickGetAxis(js,7)
+    pro['rt2'] = sdl2.SDL_JoystickGetButton(js,7)
     
     # get buttons
-    ps4['Y'] = sdl2.SDL_JoystickGetButton(js,0)
-    ps4['B'] = sdl2.SDL_JoystickGetButton(js,1)
-    ps4['A'] = sdl2.SDL_JoystickGetButton(js,2)
-    ps4['X'] = sdl2.SDL_JoystickGetButton(js,3)
-    ps4['lt1'] = sdl2.SDL_JoystickGetButton(js,4)
-    ps4['rt1'] = sdl2.SDL_JoystickGetButton(js,5)
+    pro['Y'] = sdl2.SDL_JoystickGetButton(js,0)
+    pro['B'] = sdl2.SDL_JoystickGetButton(js,1)
+    pro['A'] = sdl2.SDL_JoystickGetButton(js,2)
+    pro['X'] = sdl2.SDL_JoystickGetButton(js,3)
+    pro['lt1'] = sdl2.SDL_JoystickGetButton(js,4)
+    pro['rt1'] = sdl2.SDL_JoystickGetButton(js,5)
     
     # use share button as a quit
     quit = sdl2.SDL_JoystickGetButton(js,8)
     
     # get hat
-    ps4['hat'] = sdl2.SDL_JoystickGetHat(js,0)
+    pro['hat'] = sdl2.SDL_JoystickGetHat(js,0)
     
-    prettyPrintPS4(ps4)
+    prettyPrintPRO(pro)
     
     if quit == True:
         break
